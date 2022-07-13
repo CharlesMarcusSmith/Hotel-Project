@@ -56,7 +56,9 @@ public class GuestService {
 	}
 	
 	//Delete
-	public Guest delete(@PathVariable long id) {
-		return this.guestlist.remove(id - 1);
+	public boolean delete(@PathVariable long id) {
+		this.repo.deleteById(id);
+		
+		return !this.repo.existsById(id);
 	}
 }
