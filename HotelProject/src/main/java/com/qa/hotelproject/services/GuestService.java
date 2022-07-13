@@ -12,23 +12,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.qa.hotelproject.entities.Guest;
+import com.qa.hotelproject.repos.GuestRepo;
 
 @Service
 public class GuestService {
 	
-//	Hello Test:
-//	Used for testing functionality using postman
-	public String hello() {
-		return "Hello";
+//	Repo Dependency:
+	private GuestRepo repo;
+	public GuestService(GuestRepo repo) {
+		this.repo = repo;
 	}
-
-	// Temporary Array for testing CRUD, given unique name 'guestlist' to prevent
-	// confusion
-	private List<Guest> guestlist = new ArrayList<>();
 
 	// Read All Functionality
 	public List<Guest> readAll() {
-		return this.guestlist;
+		return this.repo.findAll();
 	}
 
 	// Read By Id
