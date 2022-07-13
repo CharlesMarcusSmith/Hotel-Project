@@ -41,13 +41,18 @@ public class GuestService {
 	}
 	
 	// Update by id
-	public Guest update(@PathVariable long id, @RequestBody Guest guest) {
-		//Remove old record:
-		this.guestlist.remove(id);
-		//Adding new record:
-		this.guestlist.add(id, guest);
-		//Return new record:
-		return this.guestlist.get(id);
+	public Guest update(@PathVariable long id, @RequestBody Guest guest) {					//'guest' holds the new properties we with to overwrite, not including id.
+		//Store existing entry as temp using id
+		Guest temp = this.repo.findById(id).get();											
+		
+//		Overwriting existing properties:
+		temp.setFirstName(guest.getFirstName());
+		temp.setLastName(guest.getLastName());
+		temp.setEmail(guest.getEmail());
+		temp.setRoomNumber(guest.getRoomNumber());
+		
+//		Add newly updated entry:
+		return this.repo.saveAndFlush(temp);												// entity is parameter data type.
 	}
 	
 	//Delete
