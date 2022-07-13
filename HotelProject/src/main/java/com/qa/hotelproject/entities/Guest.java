@@ -19,6 +19,29 @@ public class Guest {
 	private String email;
 	
 	private int roomNumber;
+	
+//	Default Constructor
+	public Guest() {}
+	
+//	No id constructor
+	public Guest(String firstName, String lastName, String email, int roomNumber) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.roomNumber = roomNumber;
+	}
+
+	
+	//All Args constructor
+	public Guest(long id, String firstName, String lastName, String email, int roomNumber) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.roomNumber = roomNumber;
+	}
 
 	public long getId() {
 		return id;
