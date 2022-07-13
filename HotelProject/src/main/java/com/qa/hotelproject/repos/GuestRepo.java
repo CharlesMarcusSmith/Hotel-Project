@@ -1,5 +1,5 @@
 package com.qa.hotelproject.repos;
 
-public class GuestRepo {
+public interface GuestRepo {
 
 }
