@@ -23,27 +23,24 @@ public class GuestService {
 		this.repo = repo;
 	}
 
-	// Read All Functionality
+//	Repo Functionality:
+	
+	// Read All 
 	public List<Guest> readAll() {
 		return this.repo.findAll();
 	}
 
 	// Read By Id
 	public Guest readByID(@PathVariable long id) {
-		// This works differently to final readByID functionality, due to .get() and SQL
-		// id's begin at 1 not 0.
-		// On postman, searching id 0 instead of 1, will return first result, as method
-		// uses List index not ID to search currently.
 		return this.repo.findById(id).get();
 	}
 
 	// Create
 	public Guest create(@RequestBody Guest guest) {
-		this.guestlist.add(guest);									//append to temp test list
-		return this.guestlist.get(guestlist.size() - 1);			//-1 used as mock SQL id's begin at 1, Array Lists begin at 0 - for testing purposes only.
+		return this.repo.saveAndFlush(guest);
 	}
 	
-	// UPDATE
+	// Update by id
 	public Guest update(@PathVariable long id, @RequestBody Guest guest) {
 		//Remove old record:
 		this.guestlist.remove(id);
