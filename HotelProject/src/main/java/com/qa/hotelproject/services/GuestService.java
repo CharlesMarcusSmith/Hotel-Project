@@ -37,7 +37,7 @@ public class GuestService {
 		// id's begin at 1 not 0.
 		// On postman, searching id 0 instead of 1, will return first result, as method
 		// uses List index not ID to search currently.
-		return this.guestlist.get(id - 1);
+		return this.guestlist.get(id);
 	}
 
 	// Create
@@ -49,11 +49,11 @@ public class GuestService {
 	// UPDATE
 	public Guest update(@PathVariable int id, @RequestBody Guest guest) {
 		//Remove old record:
-		this.guestlist.remove(id - 1);
+		this.guestlist.remove(id);
 		//Adding new record:
-		this.guestlist.add(id - 1, guest);
+		this.guestlist.add(id, guest);
 		//Return new record:
-		return this.guestlist.get(id - 1);
+		return this.guestlist.get(id);
 	}
 	
 	//Delete
