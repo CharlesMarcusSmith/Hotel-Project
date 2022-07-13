@@ -1,5 +1,8 @@
 package com.qa.hotelproject.entities;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,12 +15,17 @@ public class Guest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(nullable = false)
 	private String firstName;
 	
+	@Column(nullable = false)
 	private String lastName;
 	
+	@Column(nullable = false, unique = true)
 	private String email;
 	
+	@Column(nullable = false, unique = true)
+	//Room number must be unique, as bookings are taken under one customers name, therefore room bookings must be unique and up to date.
 	private int roomNumber;
 	
 //	Default Constructor
@@ -82,6 +90,25 @@ public class Guest {
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, id, lastName, roomNumber);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Guest other = (Guest) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(lastName, other.lastName) && roomNumber == other.roomNumber;
+	}
+	
 	
 	
 }
