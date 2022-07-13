@@ -13,22 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.hotelproject.entities.Guest;
+import com.qa.hotelproject.services.GuestService;
 
 @RestController
 @RequestMapping("/guest") // localhost:8080/guest
 public class GuestController {
+	
+	private GuestService service;
+	
+	public GuestController(GuestService service) {
+		this.service = service;
+	}
 
 //	Hello Test:
 //	Used for testing functionality using postman
 	@GetMapping("/hello") // localhost:8080/guest/hello
 	public String hello() {
-		return "Hello";
+		return this.service.hello();
 	}
 
 	// Get - Read All Functionality
 	@GetMapping("/readAll")
 	public List<Guest> readAll() {
-		return this.guestlist;
+		return this.service.readAll();
 	}
 
 	// Get - Read By Id
@@ -38,31 +45,25 @@ public class GuestController {
 		// id's begin at 1 not 0.
 		// On postman, searching id 0 instead of 1, will return first result, as method
 		// uses List index not ID to search currently.
-		return this.guestlist.get(id);
+		return this.service.readByID(id);
 	}
 
 	// POST - Create
 	@PostMapping("/create")
 	public Guest create(@RequestBody Guest guest) {
-		this.guestlist.add(guest);									//append to temp test list
-		return this.guestlist.get(guestlist.size() - 1);			//-1 used as mock SQL id's begin at 1, Array Lists begin at 0 - for testing purposes only.
+		return this.service.create(guest);
 	}
 	
 	//PUT - UPDATE
 	@PutMapping("/update/{id}")
 	public Guest update(@PathVariable int id, @RequestBody Guest guest) {
-		//Remove old record:
-		this.guestlist.remove(id);
-		//Adding new record:
-		this.guestlist.add(id, guest);
-		//Return new record:
-		return this.guestlist.get(id);
+		return this.service.update(id, guest);
 	}
 	
 	//POST - Delete
 	@DeleteMapping("delete/{id}")
 	public Guest delete(@PathVariable int id) {
-		return this.guestlist.remove(id);
+		return this.service.delete(id);
 	}
 	
 
