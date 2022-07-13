@@ -43,7 +43,6 @@ public class GuestController {
 	public Guest readByID(@PathVariable int id) {
 		// This works differently to final readByID functionality, due to .get() and SQL
 		// id's begin at 1 not 0.
-		// On postman, searching id 0 instead of 1, will return first result, as method
 		// uses List index not ID to search currently.
 		return this.service.readByID(id);
 	}
@@ -57,7 +56,7 @@ public class GuestController {
 	//PUT - UPDATE
 	@PutMapping("/update/{id}")
 	public Guest update(@PathVariable int id, @RequestBody Guest guest) {
-		return this.service.update(id, guest);
+		return this.service.update(id, guest);												
 	}
 	
 	//POST - Delete
