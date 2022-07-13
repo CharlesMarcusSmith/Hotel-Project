@@ -1,6 +1,5 @@
 package com.qa.hotelproject.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,7 +39,7 @@ public class GuestController {
 
 	// Get - Read By Id
 	@GetMapping("/readById/{id}")
-	public Guest readByID(@PathVariable int id) {
+	public Guest readByID(@PathVariable long id) {
 		// This works differently to final readByID functionality, due to .get() and SQL
 		// id's begin at 1 not 0.
 		// uses List index not ID to search currently.
@@ -55,13 +54,13 @@ public class GuestController {
 	
 	//PUT - UPDATE
 	@PutMapping("/update/{id}")
-	public Guest update(@PathVariable int id, @RequestBody Guest guest) {
+	public Guest update(@PathVariable long id, @RequestBody Guest guest) {
 		return this.service.update(id, guest);												
 	}
 	
 	//POST - Delete
 	@DeleteMapping("delete/{id}")
-	public Guest delete(@PathVariable int id) {
+	public Guest delete(@PathVariable long id) {
 		return this.service.delete(id);
 	}
 	

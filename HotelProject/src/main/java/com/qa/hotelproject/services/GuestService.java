@@ -32,7 +32,7 @@ public class GuestService {
 	}
 
 	// Read By Id
-	public Guest readByID(@PathVariable int id) {
+	public Guest readByID(@PathVariable long id) {
 		// This works differently to final readByID functionality, due to .get() and SQL
 		// id's begin at 1 not 0.
 		// On postman, searching id 0 instead of 1, will return first result, as method
@@ -47,7 +47,7 @@ public class GuestService {
 	}
 	
 	// UPDATE
-	public Guest update(@PathVariable int id, @RequestBody Guest guest) {
+	public Guest update(@PathVariable long id, @RequestBody Guest guest) {
 		//Remove old record:
 		this.guestlist.remove(id);
 		//Adding new record:
@@ -57,7 +57,7 @@ public class GuestService {
 	}
 	
 	//Delete
-	public Guest delete(@PathVariable int id) {
+	public Guest delete(@PathVariable long id) {
 		return this.guestlist.remove(id - 1);
 	}
 }
