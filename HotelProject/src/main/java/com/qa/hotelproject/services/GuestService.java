@@ -34,7 +34,7 @@ public class GuestService {
 		// id's begin at 1 not 0.
 		// On postman, searching id 0 instead of 1, will return first result, as method
 		// uses List index not ID to search currently.
-		return this.guestlist.get(id);
+		return this.repo.findById(id).get();
 	}
 
 	// Create
