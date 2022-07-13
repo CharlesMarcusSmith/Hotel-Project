@@ -25,10 +25,6 @@ public class GuestController {
 		return "Hello";
 	}
 
-	// Temporary Array for testing CRUD, given unique name 'guestlist' to prevent
-	// confusion
-	private List<Guest> guestlist = new ArrayList<>();
-
 	// Get - Read All Functionality
 	@GetMapping("/readAll")
 	public List<Guest> readAll() {
@@ -39,7 +35,7 @@ public class GuestController {
 	@GetMapping("/readById/{id}")
 	public Guest readByID(@PathVariable int id) {
 		// This works differently to final readByID functionality, due to .get() and SQL
-		// id's begininning at 1 not 0.
+		// id's begin at 1 not 0.
 		// On postman, searching id 0 instead of 1, will return first result, as method
 		// uses List index not ID to search currently.
 		return this.guestlist.get(id);
