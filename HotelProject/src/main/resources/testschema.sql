@@ -1,0 +1,9 @@
+DROP TABLE IF EXSISTS `guest`;
+CREATE TABLE `guest` (
+	`id` BIGINT AUTO_INCREMENT,
+	`first_name` VARCHAR(225) NOT NULL,
+	`last_name` VARCHAR(225) NOT NULL,
+	`email` VARCHAR(225) UNIQUE NOT NULL,
+	`room_number` INT UNIQUE NOT NULL,
+	PRIMARY KEY(`id`)
+);
