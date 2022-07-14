@@ -1,63 +1,57 @@
 package com.qa.hotelproject.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.qa.hotelproject.entities.Guest;
+import com.qa.hotelproject.repos.GuestRepo;
 
 @Service
 public class GuestService {
 	
-//	Hello Test:
-//	Used for testing functionality using postman
-	public String hello() {
-		return "Hello";
+//	Repo Dependency:
+	private GuestRepo repo;
+	public GuestService(GuestRepo repo) {
+		this.repo = repo;
 	}
 
-	// Temporary Array for testing CRUD, given unique name 'guestlist' to prevent
-	// confusion
-	private List<Guest> guestlist = new ArrayList<>();
-
-	// Read All Functionality
+//	Read All 
 	public List<Guest> readAll() {
-		return this.guestlist;
+		return this.repo.findAll();
 	}
 
 	// Read By Id
-	public Guest readByID(@PathVariable int id) {
-		// This works differently to final readByID functionality, due to .get() and SQL
-		// id's begin at 1 not 0.
-		// On postman, searching id 0 instead of 1, will return first result, as method
-		// uses List index not ID to search currently.
-		return this.guestlist.get(id);
+	public Guest readByID(@PathVariable long id) {
+		return this.repo.findById(id).get();
 	}
 
 	// Create
 	public Guest create(@RequestBody Guest guest) {
-		this.guestlist.add(guest);									//append to temp test list
-		return this.guestlist.get(guestlist.size() - 1);			//-1 used as mock SQL id's begin at 1, Array Lists begin at 0 - for testing purposes only.
+		return this.repo.saveAndFlush(guest);
 	}
 	
-	// UPDATE
-	public Guest update(@PathVariable int id, @RequestBody Guest guest) {
-		//Remove old record:
-		this.guestlist.remove(id);
-		//Adding new record:
-		this.guestlist.add(id, guest);
-		//Return new record:
-		return this.guestlist.get(id);
+	// Update by id
+	public Guest update(@PathVariable long id, @RequestBody Guest guest) {					//'guest' holds the new properties we with to overwrite, not including id.
+		//Store existing entry as temp using id
+		Guest temp = this.repo.findById(id).get();											
+		
+//		Overwriting existing properties:
+		temp.setFirstName(guest.getFirstName());
+		temp.setLastName(guest.getLastName());
+		temp.setEmail(guest.getEmail());
+		temp.setRoomNumber(guest.getRoomNumber());
+		
+//		Add newly updated entry:
+		return this.repo.saveAndFlush(temp);												// entity is parameter data type.
 	}
 	
 	//Delete
-	public Guest delete(@PathVariable int id) {
-		return this.guestlist.remove(id - 1);
+	public boolean delete(@PathVariable long id) {
+		this.repo.deleteById(id);
+		
+		return !this.repo.existsById(id);
 	}
 }
