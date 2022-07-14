@@ -2,6 +2,7 @@ package com.qa.hotelproject.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.util.ArrayList;
@@ -89,7 +90,7 @@ public class GuestControllerTest {
 			String outJSON = om.writeValueAsString(output);
 				
 			//Sending request
-			mvc.perform(post("/guest/update/1").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
+			mvc.perform(put("/guest/update/1").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
 	}
 	
 	
