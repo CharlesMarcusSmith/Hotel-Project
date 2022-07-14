@@ -1,5 +1,6 @@
 package com.qa.hotelproject.controllers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -78,19 +79,26 @@ public class GuestControllerTest {
 	
 	//update - changing room number from 333 to 0
 	@Test
-	public void update() throws Exception {
+	public void updateTest() throws Exception {
 		//Content
-			Guest newEntry = new Guest("Charles", "Smith", "charles@googlemail.com", 0);
-			//Converting to JSON
-			String entryJSON = om.writeValueAsString(newEntry);
+		Guest newEntry = new Guest("Charles", "Smith", "charles@googlemail.com", 0);
+		//Converting to JSON
+		String entryJSON = om.writeValueAsString(newEntry);
 				
-			//The result we expect
-			Guest output = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 0);
-			//Converting output to JSON
-			String outJSON = om.writeValueAsString(output);
+		//The result we expect
+		Guest output = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 0);
+		//Converting output to JSON
+		String outJSON = om.writeValueAsString(output);
 				
-			//Sending request
-			mvc.perform(put("/guest/update/1").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
+		//Sending request
+		mvc.perform(put("/guest/update/1").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
+	}
+	
+	//delete
+	@Test
+	public void deleteTest() throws Exception {
+		//Sending request 
+		mvc.perform(delete("/guest/delete/1").contentType(MediaType.APPLICATION_JSON)).andExpect(content().string("true"));
 	}
 	
 	
