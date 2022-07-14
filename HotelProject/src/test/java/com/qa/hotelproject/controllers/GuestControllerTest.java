@@ -31,20 +31,34 @@ public class GuestControllerTest {
 	@Autowired
 	private ObjectMapper om;
 	
+	//readAll
 	@Test
 	public void getAllTest() throws Exception {
 		//The result we expect
 		List<Guest> output = new ArrayList<>();
 		Guest entry = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 333);
+		output.add(entry);
 		
 		//Converting output to JSON
 		String outJSON = om.writeValueAsString(output);
 		
 		//Sending request
-		mvc.perform(get("/guest/readAll")
-				.contentType(MediaType.APPLICATION_JSON))
-		.andExpect(content().json(outJSON));
-	}
+		mvc.perform(get("/guest/readAll").contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(outJSON));
+	} 
 	
+	//readById
+	@Test
+	public void getByIDTest() throws Exception {
+		//The result we expect
+		Guest output = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 333);
+		
+		//Converting output to JSON
+		String outJSON = om.writeValueAsString(output);
+		
+		// Sending request
+		mvc.perform(get("/guest/readById/1").contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(outJSON));
+		
+		
+	}
 	
 }
