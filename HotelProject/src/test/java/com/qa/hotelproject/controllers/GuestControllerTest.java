@@ -1,6 +1,7 @@
 package com.qa.hotelproject.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.util.ArrayList;
@@ -38,7 +39,6 @@ public class GuestControllerTest {
 		List<Guest> output = new ArrayList<>();
 		Guest entry = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 333);
 		output.add(entry);
-		
 		//Converting output to JSON
 		String outJSON = om.writeValueAsString(output);
 		
@@ -51,14 +51,28 @@ public class GuestControllerTest {
 	public void getByIDTest() throws Exception {
 		//The result we expect
 		Guest output = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 333);
-		
 		//Converting output to JSON
 		String outJSON = om.writeValueAsString(output);
 		
 		// Sending request
 		mvc.perform(get("/guest/readById/1").contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(outJSON));
+	}
+	
+	//create
+	@Test
+	public void createTest() throws Exception {
+		//Content
+		Guest newEntry = new Guest("Creation", "Test", "creationtest@googlemail.com", 123);
+		//Converting to JSON
+		String entryJSON = om.writeValueAsString(newEntry);
 		
+		//The result we expect
+		Guest output = new Guest(2L, "Creation", "Test", "creationtest@googlemail.com", 123);
+		//Converting output to JSON
+		String outJSON = om.writeValueAsString(output);
 		
+		//Sending request
+		mvc.perform(post("/guest/create").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
 	}
 	
 }
