@@ -1,14 +1,9 @@
 package com.qa.hotelproject.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.qa.hotelproject.entities.Guest;
@@ -23,9 +18,7 @@ public class GuestService {
 		this.repo = repo;
 	}
 
-//	Repo Functionality:
-	
-	// Read All 
+//	Read All 
 	public List<Guest> readAll() {
 		return this.repo.findAll();
 	}

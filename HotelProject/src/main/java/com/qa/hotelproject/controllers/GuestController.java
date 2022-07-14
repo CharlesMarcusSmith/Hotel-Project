@@ -24,13 +24,6 @@ public class GuestController {
 		this.service = service;
 	}
 
-//	Hello Test:
-//	Used for testing functionality using postman
-	@GetMapping("/hello") // localhost:8080/guest/hello
-	public String hello() {
-		return this.service.hello();
-	}
-
 	// Get - Read All Functionality
 	@GetMapping("/readAll")
 	public List<Guest> readAll() {
@@ -60,7 +53,7 @@ public class GuestController {
 	
 	//POST - Delete
 	@DeleteMapping("delete/{id}")
-	public Guest delete(@PathVariable long id) {
+	public boolean delete(@PathVariable long id) {
 		return this.service.delete(id);
 	}
 	
