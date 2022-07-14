@@ -41,7 +41,7 @@ public class GuestControllerTest {
 		String outJSON = om.writeValueAsString(output);
 		
 		//Sending request
-		mvc.perform(get("guest/readAll")
+		mvc.perform(get("/guest/readAll")
 				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(content().json(outJSON));
 	}
