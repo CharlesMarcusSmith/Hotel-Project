@@ -75,4 +75,23 @@ public class GuestControllerTest {
 		mvc.perform(post("/guest/create").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
 	}
 	
+	//update - changing room number from 333 to 0
+	@Test
+	public void update() throws Exception {
+		//Content
+			Guest newEntry = new Guest("Charles", "Smith", "charles@googlemail.com", 0);
+			//Converting to JSON
+			String entryJSON = om.writeValueAsString(newEntry);
+				
+			//The result we expect
+			Guest output = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 0);
+			//Converting output to JSON
+			String outJSON = om.writeValueAsString(output);
+				
+			//Sending request
+			mvc.perform(post("/guest/update/1").contentType(MediaType.APPLICATION_JSON).content(entryJSON)).andExpect(content().json(outJSON));
+	}
+	
+	
+	
 }
