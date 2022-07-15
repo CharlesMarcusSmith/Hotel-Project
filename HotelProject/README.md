@@ -35,9 +35,23 @@ Screenshots showing your postman requests and the output from the API.
 This has been done at all levels, but for the purpose of covering all basis, I will demonstrate at the repo level.
 
 Create:
-![](Documentation/Create%20Repo%20Level.PNG
+![](Documentation/Create%20Repo%20Level.PNG)
+
+Read All:
+![](Documentation/readAll%20Repo%20Level.PNG)
+
+Read By ID:
+![](Documentation/readByID%20Repo%20Level.PNG)
+
+Update:
+![](Documentation/update%20Repo%20Level.PNG)
+
+Delete:
+![](Documentation/delete%20Repo%20Level.PNG)
 
 Screenshots of your database to prove that data is being persisted.
+
+![](Documentation/Persistence%20in%20SQL%20workbench.PNG)
 
 Screenshot of your test results, including coverage report.
 
