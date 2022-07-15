@@ -53,7 +53,14 @@ Screenshots of your database to prove that data is being persisted.
 
 ![](Documentation/Persistence%20in%20SQL%20workbench.PNG)
 
+
+
 Screenshot of your test results, including coverage report.
+![](Documentation/All%20Tests%20Passed.PNG)
+
+Coverage:
+![](Documentation/CoverageTest.PNG)
+
 
 Link to Jira Board. 
 https://charles-smith.atlassian.net/jira/software/projects/DP/boards/3/roadmap?shared=&atlOrigin=eyJpIjoiZmU4ZDAzNzExMDc3NDNhMjhlMzNiMDkyMzA0YzJkMGUiLCJwIjoiaiJ9
