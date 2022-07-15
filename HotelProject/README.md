@@ -24,6 +24,7 @@ With the writing of certain methods and functions, I foudn that you would have t
 I also found it challenging not only to stipulate when variables had to be called certain names, for example in Test Controller: Mvc, Mapper, output... but it is hard to tell when things have to be named certain ways for dependencies etc.. or if we can call them what we like. 
 I then however also felt compelled to change variable names, as writing up the same variable names as the example we were taugh almost seemed like plagerism, but in most cases the names given were the most suitable, especially in terms of reflection at a later date from myself or an potential employer.
 
+The use of Git Branches and merge / pulling; I implemented the pull request into Main not Dev, and lost progress on dev and pushed functionality to main also by accident. This resulted in me having to restart the whole process and readd files manually; I have however gained knowledge in the use of pull requests from Branches.
 
 Possible improvements for future revisions of the project.
 I would put more time into in-depth planning using the JIRA backlog at the start, making sure the plan is entirely finished in-detail instead of relying on filling details when they became clear later.
