@@ -62,6 +62,8 @@ Screenshot of your test results, including coverage report.
 Coverage:
 ![](Documentation/CoverageTest.PNG)
 
+Swagger (in Documentation as requested):
+![](Documentation/Swagger.PNG)
 
 Link to Jira Board. 
-https://charles-smith.atlassian.net/jira/software/projects/DP/boards/3/roadmap?shared=&atlOrigin=eyJpIjoiZmU4ZDAzNzExMDc3NDNhMjhlMzNiMDkyMzA0YzJkMGUiLCJwIjoiaiJ9
+https://charles-smith.atlassian.net/jira/software/projects/DP/boards/3
