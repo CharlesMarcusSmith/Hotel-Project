@@ -7,5 +7,6 @@ import com.qa.hotelproject.entities.Guest;
 
 @Repository
 public interface GuestRepo extends JpaRepository<Guest, Long> {
-	
+	//Custom Query
+	Guest findGuestByRoomNumber(int roomNumber);
 }

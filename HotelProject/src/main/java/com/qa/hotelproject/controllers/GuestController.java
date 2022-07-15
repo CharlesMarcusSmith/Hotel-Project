@@ -57,5 +57,8 @@ public class GuestController {
 		return this.service.delete(id);
 	}
 	
-
+	@GetMapping("/readByRoom/{roomNumber}")
+	public Guest readByRoomNumber(@PathVariable int roomNumber) {
+		return this.service.readByRoomNumber(roomNumber);
+	}
 }

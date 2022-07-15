@@ -101,6 +101,19 @@ public class GuestControllerTest {
 		mvc.perform(delete("/guest/delete/1").contentType(MediaType.APPLICATION_JSON)).andExpect(content().string("true"));
 	}
 	
+	// readById
+	@Test
+	public void getByRoomNumber() throws Exception {
+		// The result we expect
+		Guest output = new Guest(1L, "Charles", "Smith", "charles@googlemail.com", 333);
+		// Converting output to JSON
+		String outJSON = om.writeValueAsString(output);
+
+		// Sending request
+		mvc.perform(get("/guest/readByRoom/333").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(outJSON));
+	}
+	
 	
 	
 }

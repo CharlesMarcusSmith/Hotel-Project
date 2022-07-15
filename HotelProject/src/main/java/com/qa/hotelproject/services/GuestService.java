@@ -54,4 +54,10 @@ public class GuestService {
 		
 		return !this.repo.existsById(id);
 	}
+	
+	// Read By Id
+	public Guest readByRoomNumber(@PathVariable int roomNumber) {
+		return this.repo.findGuestByRoomNumber(roomNumber);
+	}
 }
+
